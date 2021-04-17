@@ -13,7 +13,7 @@ The line of codes were inspired by nature. It was the combination between neuron
 
 ### Game Parameters
 
-*  **Bird ID** is the the identification of an agent.
+*  **Bird ID** is the identification of an agent.
 *  **Score** is the score of the current agent playing.
 *  **High score** is the highest score for all the agents whom who has played the game.
 *  **Generation** is the current generation of all the agents being runned.
