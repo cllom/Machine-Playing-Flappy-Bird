@@ -1,5 +1,5 @@
 # Machine-Playing-Flappy-Bird
-##How to build a machine that learn how to play a flappy bird?
+## How to build a machine that learn how to play a flappy bird?
 
 
 https://user-images.githubusercontent.com/27281789/115113624-8379cc00-9f8b-11eb-983b-fdb106af57a8.mp4
@@ -8,7 +8,7 @@ Congratulations AI! You play yourself.
 
 
 ### Abstract
-The line of codes were inspired by nature. It was the combination between neurons, how our brain works, and the Darwinian theory of evolution. Those combinations between the Artificial Neural Network and Genetic Algorithm compose unsupervised machine learning. The servo motor is to show how the mechanical machine can be also learned to interact with another machine as the environment.
+The line of codes were inspired by nature. It was the combination between neurons, how our brain works, and the Darwinian theory of evolution. Those combinations between the Artificial Neural Network and Genetic Algorithm compose unsupervised machine learning. The servo motor is to show how the mechanical machine learn to interact with another machine as the environment.
 
 
 ### Game Parameters
@@ -28,7 +28,7 @@ The line of codes were inspired by nature. It was the combination between neuron
 *  Wires
 
 ### Artificial Neural Network
-Let us call the robot as an agent, each individual agent has its own brain of an artificial network of 4 inputs and 7 nodes and 1 output.
+Let us call the robot as an agent, each individual agent has its own brain of an artificial network of 4 inputs and 7 hidden nodes and 1 output.
 
 ```python
 self.wih = numpy.random.normal(0.0, pow(self.hnodes,-0.5), (self.hnodes, self.inodes))
@@ -54,6 +54,7 @@ def query(self, inputs_list):
 ```
 
 ### Evolutionary Algorithm
+The evolutionary algorithm or genetic algorithm helps to select the better agents who is more likely survive by survival of the fittest, reporduction and mutation.
 
 1. Create first population
 ```python
@@ -69,7 +70,7 @@ for i in range(POP_SIZE):
                               person[i].who,
                               'UNKNOWN'))
 ```
-2. Run all the individual agents and calculate the fitness (How far the agent survive)
+2. Run all the individual agents and calculate the fitness (How far the agent survive), in this case we just have one agent to be one machine.
 3. Survival of the fittest
 ```python
 #Mom
@@ -156,4 +157,5 @@ self.who = numpy.array([[-4.23668794, -1.10929065,  0.05054322,  0.41018827,  2.
 
 (c)2021
 By [Marcello Tania](https://marcellotania.com/)
-Special thanks to Yohanes Tjandrawidjaja for the math expert and sugestions
+
+Special thanks to Yohanes Tjandrawidjaja for the math expert and suggestions.
