@@ -1,7 +1,10 @@
 # Machine-Playing-Flappy-Bird
 How to build a machine that learn how to play a flappy bird?
 
-![](/Media/FlappyBird.mp4)
+
+https://user-images.githubusercontent.com/27281789/115113624-8379cc00-9f8b-11eb-983b-fdb106af57a8.mp4
+
+
 
 
 ```python
