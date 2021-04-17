@@ -54,7 +54,7 @@ def query(self, inputs_list):
 ```
 
 ### Evolutionary Algorithm
-The evolutionary algorithm or genetic algorithm helps to select the better agents who is more likely survive by survival of the fittest, reporduction and mutation.
+The evolutionary algorithm or genetic algorithm helps to select the better agents who is more likely survive by using the techniques as following: survival of the fittest, reproduction and mutation.
 
 1. Create first population
 ```python
