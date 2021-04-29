@@ -1,5 +1,5 @@
 # Machine-Playing-Flappy-Bird
-## How to build a machine that learn how to play a flappy bird?
+## How to build a machine that learns how to play a flappy bird?
 
 
 https://user-images.githubusercontent.com/27281789/115113624-8379cc00-9f8b-11eb-983b-fdb106af57a8.mp4
@@ -28,14 +28,14 @@ The line of codes were inspired by nature. It was the combination between neuron
 *  Wires
 
 ### Artificial Neural Network
-Let us call the robot as an agent, each individual agent has its own brain of an artificial network of 4 inputs and 7 hidden nodes and 1 output.
+Let us call the robot  an agent, each individual agent has its own brain of an artificial network of 4 inputs and 7 hidden nodes, and 1 output.
 
 ```python
 self.wih = numpy.random.normal(0.0, pow(self.hnodes,-0.5), (self.hnodes, self.inodes))
 self.who = numpy.random.normal(0.0, pow(self.onodes,-0.5), (self.onodes, self.hnodes)) 
 ```
 
-Then, the forward function is to calculate the output result by using the weights of each nodes of the Artificial Neural Network. We could just simple calculate this using matrixes.
+Then, the forward propagation is to calculate the output result by using the weights of each node of the Artificial Neural Network. We could just simple calculate this using matrix.
 
 ```python
 def query(self, inputs_list):
@@ -54,9 +54,10 @@ def query(self, inputs_list):
 ```
 
 ### Evolutionary Algorithm
-The evolutionary algorithm or genetic algorithm helps to select the better agents who is more likely survive by using the techniques as following: survival of the fittest, reproduction and mutation.
+The evolutionary algorithm or genetic algorithm helps to select the better agents who are more likely survive by using the techniques as following: survival of the fittest, reproduction, and mutation.
 
-1. Create first population
+
+1. Create the first population
 ```python
 # Create first population
 print('Geration : 0, HELLO WORLD!')
@@ -70,8 +71,9 @@ for i in range(POP_SIZE):
                               person[i].who,
                               'UNKNOWN'))
 ```
-2. Run all the individual agents and calculate the fitness (How far the agent survive), in this case we just have one agent to be one machine.
-3. Survival of the fittest
+2. Run all the individual agents and calculate the fitness (How far the agent can survive). In this case, we just have one agent as one machine to be evaluated at the same time.
+3. Survival of the fittest describes that those birds tend to live longer and reproduce, create a new generation with the evolved genes ( the Artificial Neural Network).
+
 ```python
 #Mom
 i1 = random.randrange(POP_SIZE) # choose parent 
@@ -99,7 +101,8 @@ else:
 if person[i3].fitness >= person[dad].fitness:
     dad = i3
 ```
-4. Reproduction to create new generation of offspring.
+4. Reproduction to create a new generation of offspring.
+
 ```python
 #Crossover
 
@@ -120,6 +123,7 @@ for i in range(input_nodes):
 
 ```
 5.  Mutation to evolve.
+
 ```python
 #Mutation
 
@@ -136,7 +140,7 @@ for i in range(input_nodes):
             r = (random.randint(0, 1))%2 *2-1 # create a number either -1 or 1 (sign)
             offspring[indiv].wih[ii,i] += r*STEP_SIZE
 ```
-6. All parents are replaced by the offsprings. 
+6. All parents are replaced by the offsprings.
 
 
 ## Pre-Trained Model
