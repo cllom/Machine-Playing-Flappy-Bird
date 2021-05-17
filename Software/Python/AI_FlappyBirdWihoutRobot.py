@@ -1,28 +1,21 @@
 #
 # (c) Marcello Tania 17/04/21
-#
+#  
 # This work may be reproduced, modified, distributed,
 # performed, and displayed for any purpose. Copyright is
 # retained and must be preserved. The work is provided
 # as is; no warranty is provided, and users accept all 
 # liability.
 #
+# This is a program of how the machine learn to play flappy 
+# bird without connected to the robot.
 
-import serial
 import time
 import pygame, sys, random
-
 import numpy
 # scipy.special for the sigmoid function expit() 
 import scipy.special
 
-# Define the serial port and baud rate.
-# Ensure the 'COM#' corresponds to what was seen in the Windows Device Manager
-ser = serial.Serial('/dev/cu.usbserial-144230', 38400)
-
-time.sleep(2) # wait for the serial connection to initialize
-
-#keyboard = Controller()
 
 # neural network class for the brain of the birds
 class Individual():
@@ -41,7 +34,7 @@ class Individual():
         # weights inside the arrays are w_i_j, where link is from node i to node j in the next layer
         # w11 w21
         # w12 w22 etc
-
+        
         self.wih = numpy.random.normal(0.0, pow(self.hnodes,-0.5), (self.hnodes, self.inodes))
         self.who = numpy.random.normal(0.0, pow(self.onodes,-0.5), (self.onodes, self.hnodes))
         
@@ -109,7 +102,7 @@ class Bird(Block):
     """
     Bird class representing the flappy bird
     """
-    GRAVITY = 0.32
+    GRAVITY = 0.3
     VEL = 9
     
     def __init__(self,path,x_pos,y_pos):
@@ -213,9 +206,9 @@ class Pipe():
     """
     Pipe class representing the pipes
     """
-    VEL = 11.5
-    GAP = 380
-    HEIGHT = [490,600,650]
+    VEL = 5
+    GAP = 400
+    HEIGHT = [500,600,700]
     X_INIT = 700
     def __init__(self,path):
         """
@@ -320,24 +313,24 @@ bird_surface = Bird('assets/bluebird-midflap.png',100,512)
 pipe_surface = Pipe('assets/pipe-green.png')
 pipe_list = []
 SPAWNPIPE = pygame.USEREVENT
-pygame.time.set_timer(SPAWNPIPE,800)
+pygame.time.set_timer(SPAWNPIPE,1400)
 
 # Global Variable
 game_active = True
 
 
 # number of input, hidden and output nodes 
-input_nodes = 4
-hidden_nodes = 7
+input_nodes = 5
+hidden_nodes = 10
 output_nodes = 1
 
 
 POP_SIZE = 10 # defining population size
-NUM_GEN = 300
+NUM_GEN = 50
 
 X_BIAS = 0.8
 MUT_RATE = 0.3
-STEP_SIZE = 0.05
+STEP_SIZE = 0.2
 
 person = [None] * POP_SIZE
 offspring = [None] * POP_SIZE
@@ -364,8 +357,7 @@ for i in range(POP_SIZE):
                               person[i].who,
                               'UNKNOWN'))
 
-for x in range(1000):
-    ser.write(b'L')
+
     
 
 while True:
@@ -376,6 +368,7 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE and game_active:
                 bird_surface.jump()
+                actuator_status = 1
             if event.key == pygame.K_SPACE and game_active == False:
                 game_active = True
                 bird_surface.rect.center = (100,512)
@@ -387,7 +380,8 @@ while True:
                     ser.write(b'L')
 
                 flag_dead = False
-
+        elif game_active:
+            actuator_status = 0
         if event.type == SPAWNPIPE:
             pipe_list.extend(pipe_surface.create_pipe())
                
@@ -425,19 +419,15 @@ while True:
             pipe_y_top = 900
             
         
-        data_inputs = numpy.array([bird_y, pipes_x, pipe_y_bottom, pipe_y_top])
+        data_inputs = numpy.array([bird_y, pipes_x, pipe_y_bottom, pipe_y_top, actuator_status])
         # Bird think using the Artificial Neural Network
         data_output = person[indiv].query(data_inputs)
         
     
         
         if data_output >= 0.5:
-            #send H to microcontroler
-            ser.write(b'H')
-            #bird_surface.jump()
-        else:
-            ser.write(b'L')
-
+            bird_surface.jump()
+   
         
         
         # Show Bird ID on screen
@@ -455,8 +445,6 @@ while True:
         if flag_dead == False:
             flag_dead = True
 
-
-            ser.write(b'R')
 
             if indiv < POP_SIZE-1:
                 game_active = True
