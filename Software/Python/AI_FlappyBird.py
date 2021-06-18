@@ -20,7 +20,7 @@ import scipy.special
 
 # Define the serial port and baud rate.
 # Ensure the 'COM#' corresponds to what was seen in the Windows Device Manager
-ser = serial.Serial('/dev/cu.usbserial-144230', 38400)
+ser = serial.Serial('/dev/cu.usbserial-144330', 38400)
 
 time.sleep(2) # wait for the serial connection to initialize
 
