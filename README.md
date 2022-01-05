@@ -163,3 +163,4 @@ self.who = numpy.array([[-4.23668794, -1.10929065,  0.05054322,  0.41018827,  2.
 By [Marcello Tania](https://marcellotania.com/)
 
 Special thanks to Yohanes Tjandrawidjaja for the math expert and suggestions.
+Credit to: https://github.com/clear-code-projects/FlappyBird_Python for the game.
