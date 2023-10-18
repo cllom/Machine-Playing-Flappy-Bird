@@ -32,7 +32,7 @@ Let us call the robot  an agent, each individual agent has its own brain of an a
 
 ```python
 self.wih = numpy.random.normal(0.0, pow(self.hnodes,-0.5), (self.hnodes, self.inodes))
-self.who = numpy.random.normal(0.0, pow(self.onodes,-0.5), (self.onodes, self.hnodes)) 
+self.who = numpy.random.normal(0.0, pow(self.onodes,-0.5), (self.onodes, self.hnodes))
 ```
 
 Then, the forward propagation is to calculate the output result by using the weights of each node of the Artificial Neural Network. We could just simple calculate this using matrix.
@@ -41,12 +41,12 @@ Then, the forward propagation is to calculate the output result by using the wei
 def query(self, inputs_list):
     # convert inputs list to 2d array
     inputs = numpy.array(inputs_list, ndmin=2).T
-    # calculate signals into hidden layer 
+    # calculate signals into hidden layer
     hidden_inputs = numpy.dot(self.wih, inputs)
-    # calculate the signals emerging from hidden layer 
+    # calculate the signals emerging from hidden layer
     hidden_outputs = self.activation_function(hidden_inputs)
-    # calculate signals into final output layer 
-    final_inputs = numpy.dot(self.who, hidden_outputs) 
+    # calculate signals into final output layer
+    final_inputs = numpy.dot(self.who, hidden_outputs)
     # calculate the signals emerging from final output layer
     final_outputs = self.activation_function(final_inputs)
 
@@ -76,9 +76,9 @@ for i in range(POP_SIZE):
 
 ```python
 #Mom
-i1 = random.randrange(POP_SIZE) # choose parent 
-i2 = random.randrange(POP_SIZE) # choose parent 
-i3 = random.randrange(POP_SIZE) # choose parent 
+i1 = random.randrange(POP_SIZE) # choose parent
+i2 = random.randrange(POP_SIZE) # choose parent
+i3 = random.randrange(POP_SIZE) # choose parent
 
 #Tournament
 if person[i1].fitness >= person[i2].fitness:
@@ -89,9 +89,9 @@ if person[i3].fitness >= person[mom].fitness:
     mom = i3
 
 #Dad
-i1 = random.randrange(POP_SIZE) # choose parent 
-i2 = random.randrange(POP_SIZE) # choose parent 
-i3 = random.randrange(POP_SIZE) # choose parent 
+i1 = random.randrange(POP_SIZE) # choose parent
+i2 = random.randrange(POP_SIZE) # choose parent
+i3 = random.randrange(POP_SIZE) # choose parent
 
 #Tournament
 if person[i1].fitness >= person[i2].fitness:
@@ -158,9 +158,21 @@ self.wih = numpy.array([[-3.29829867,  0.76441159,  2.40556884, -0.27947868],
 
 self.who = numpy.array([[-4.23668794, -1.10929065,  0.05054322,  0.41018827,  2.70858315, -0.42650511, -1.21117085]])
 ```
+## License
 
-(c)2021
-By [Marcello Tania](https://marcellotania.com/)
+Most of the project is licensed under AGPL 3.0 or later.  See the LICENSES
+folder and the SPDX metadata for more details.  The project is
+[REUSE](https://reuse.software/) compliant.
+
+## Original Authors
+
+- [Marcello Tania](https://marcellotania.com/)
+
+## Contributors
+
+- J.C. Mariscal-Melgar
+
+## Acknowledgement
 
 Special thanks to Yohanes Tjandrawidjaja for the math expert and suggestions.
 Credit to: https://github.com/clear-code-projects/FlappyBird_Python for the game.

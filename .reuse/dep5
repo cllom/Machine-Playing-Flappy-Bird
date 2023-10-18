@@ -1,0 +1,17 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Machine-Playing-Flappy-Bird
+Upstream-Contact: Marcello Tania <marcello_tania@yahoo.com>
+Source: https://github.com/cllom/Machine-Playing-Flappy-Bird
+
+Files:
+    src/firmware/**
+    src/software/**
+Copyright: Marcello Tania <marcello_tania@yahoo.com>
+License: AGPL-3.0-or-later
+
+Files:
+    res/**
+    doc/**
+    gen/**
+Copyright: Marcello Tania <marcello_tania@yahoo.com>
+License: CC-BY-SA-4.0
